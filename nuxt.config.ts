@@ -1,11 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
-    "@nuxtjs/supabase",
-    "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
+    // "@nuxtjs/supabase",
+    "@nuxtjs/tailwindcss",
     "@vite-pwa/nuxt",
     "nuxt-icon",
   ],
+  runtimeConfig: {
+    public: {
+      bucketUrl: process.env.BUCKET_URL,
+    },
+  },
 });
