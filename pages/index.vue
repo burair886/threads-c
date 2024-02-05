@@ -8,7 +8,7 @@
           v-for="(post, index) in posts"
           :key="index"
         >
-          {{ post }}
+          <post :data="post" @isDeleted="posts = []" />
         </div>
       </div>
     </div>

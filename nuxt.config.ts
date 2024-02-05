@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  tailwindcss: {
+    exposeConfig: true,
+  },
   devtools: { enabled: false },
   modules: [
     "@pinia/nuxt",
