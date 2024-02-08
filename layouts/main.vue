@@ -1,39 +1,52 @@
 <template>
-  <div id="main" class="h-screen">
-    <div class="max-w-[500px] mx-auto w-full">
+  <div id="MainLayout" class="h-screen">
+    <div class="w-full max-w-[500px] mx-auto">
       <div
-        id="topMenu"
-        class="my-2 h-10 px-2 flex justify-center items-center w-full"
+        id="TopMenu"
+        class="w-full flex items-center justify-center px-2 h-10 my-2"
       >
         <img class="w-[35px]" src="/threads-logo.png" />
       </div>
     </div>
-    <div class="w-full max-w-[500px] h-screen flex mx-auto">
+
+    <div class="flex w-full max-w-[500px] mx-auto h-screen">
       <slot />
     </div>
+
     <div
-      class="bg-black h-[70px] border-t border-t-gray-700 w-full flex fixed z-50 bottom-0"
-      id="BtmNav"
+      id="BottomNav"
+      class="fixed z-50 bottom-0 flex w-full h-[70px] border-t border-t-gray-700 bg-black"
     >
       <div
-        class="max-w-[500px] flex mx-auto items-center justify-around w-full"
+        class="flex w-full max-w-[500px] mx-auto items-center justify-around"
       >
-        <button class="w-full h-full" @click="navigateTo('/')">
-          <Icon name="heroicons-outline:home" color="#ffffff" size="35" />
-        </button>
-        <button class="w-full h-full" @click="useStore.isMenuOverlay = true">
+        <button @click="navigateTo('/')" class="w-full h-full">
           <Icon
-            name="material-symbols:edit-square-outline-rounded"
-            color="#ffffff"
+            name="material-symbols:home-outline"
             size="35"
+            color="#ffffff"
           />
         </button>
-        <button class="w-full h-full" @click="useStore.isLogoutOverlay = true">
-          <Icon name="ic:sharp-logout" color="#ffffff" size="35" />
+        <button @click="userStore.isMenuOverlay = true" class="w-full h-full">
+          <Icon
+            class="mb-1"
+            name="material-symbols:edit-square-outline-rounded"
+            size="32"
+            color="#ffffff"
+          />
+        </button>
+        <button @click="userStore.isLogoutOverlay = true" class="w-full h-full">
+          <Icon class="mb-1" name="ph:sign-out" size="32" color="#ffffff" />
         </button>
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useUserStore } from "@/store/user";
+const userStore = useUserStore();
+
+// const client = useSupabaseClient();
+// const user = useSupabaseUser();
+</script>

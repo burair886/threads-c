@@ -1,42 +1,92 @@
 <template>
-  <div id="indexPage" class="overflow-auto w-full">
-    <div class="overflow-hidden max-w-[500px] mx-auto">
-      <div id="posts" class="max-w-[600px] mx-auto px-4">
-        <div
-          v-if="isPosts"
-          class="text-white"
-          v-for="(post, index) in posts"
-          :key="index"
-        >
-          <post :data="post" @isDeleted="posts = []" />
+  <MainLayout>
+    <div id="IndexPage" class="w-full overflow-auto">
+      <div class="mx-auto max-w-[500px] overflow-hidden">
+        <div id="Posts" class="px-4 max-w-[600px] mx-auto">
+          <div v-if="isPosts" v-for="post in posts" :key="post">
+            <Post :post="post" @isDeleted="posts = userStore.getAllPosts()" />
+          </div>
+          <div v-else>
+            <client-only>
+              <div
+                v-if="isLoading"
+                class="mt-20 w-full flex items-center justify-center mx-auto"
+              >
+                <div
+                  class="text-white mx-auto flex flex-col items-center justify-center"
+                >
+                  <Icon
+                    name="eos-icons:bubble-loading"
+                    size="50"
+                    color="#ffffff"
+                  />
+                  <div class="w-full mt-1">Loading...</div>
+                </div>
+              </div>
+              <div
+                v-if="!isLoading"
+                class="mt-20 w-full flex items-center justify-center mx-auto"
+              >
+                <div
+                  class="text-white mx-auto flex flex-col items-center justify-center"
+                >
+                  <Icon name="tabler:mood-empty" size="50" color="#ffffff" />
+                  <div class="w-full">Make the first post!</div>
+                </div>
+              </div>
+            </client-only>
+          </div>
+          <div class="mt-60" />
         </div>
       </div>
     </div>
-  </div>
+  </MainLayout>
 </template>
 
 <script setup>
-import { useUserStore } from "~/store/user";
+import MainLayout from "@/layouts/main.vue";
 
-definePageMeta({
-  layout: "main",
-});
+import { useUserStore } from "@/store/user";
+// const userStore = useUserStore();
+// const user = useSupabaseUser();
 
-// const user = useSupebaseUser();
-const userStore = useUserStore();
+let posts = ref([]);
+let isPosts = ref(false);
+let isLoading = ref(false);
 
-const isPosts = ref(true);
-const posts = ref([]);
-const isLoading = ref(false);
+// watchEffect(() => {
+//   if (!user.value) {
+//     return navigateTo("/auth");
+//   }
+// });
 
-onBeforeMount(() => {
-  posts.value = [
-    {
-      name: "abc",
-      img: "https://picsum.photos/100/100",
-      text: "title",
-      pic: "https://picsum.photos/500/500",
-    },
-  ];
-});
+// onBeforeMount(async () => {
+//   try {
+//     isLoading.value = true;
+//     await userStore.getAllPosts();
+//     isLoading.value = false;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+// onMounted(() => {
+//   watchEffect(() => {
+//     if (userStore.posts && userStore.posts.length >= 1) {
+//       posts.value = userStore.posts;
+//       isPosts.value = true;
+//     }
+//   });
+// });
+
+// watch(
+//   () => posts.value,
+//   () => {
+//     if (userStore.posts && userStore.posts.length >= 1) {
+//       posts.value = userStore.posts;
+//       isPosts.value = true;
+//     }
+//   },
+//   { deep: true }
+// );
 </script>
