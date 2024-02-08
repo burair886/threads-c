@@ -33,7 +33,7 @@
               class="flex items-center gap-2 rounded text-red-500 justify-between bg-black pl-4 pr-3 w-full hover:bg-gray-900 py-1"
             >
               Delete
-              <Icon size="20" name="bxs:trash-alt" />
+              <Icon size="15" name="bxs:trash-alt" />
             </button>
           </div>
         </div>
@@ -42,8 +42,57 @@
         <div class="w-11 mx-auto">
           <div class="h-full bg-gray-700 w-px absolute ml-4 mt-1 top-0" />
         </div>
+        <div class="font-light bg-black rounded-lg w-[calc(100%-50px)] text-sm">
+          <div class="text-gray-300 py-2">{{ props?.data?.text }}</div>
+          <img
+            v-if="data && data.pic"
+            :src="props?.data?.pic"
+            class="rounded-lg pr-2 mt-2 w-full mx-auto"
+          />
+          <div class="ml-2 absolute mt-2 w-full">
+            <button class="flex gap-1 items-center" :disabled="isLike">
+              <Icon
+                size="28"
+                class="p-1 text-white hover:bg-gray-800 rounded-full cursor-pointer"
+                name="ic:twotone-favorite"
+              />
+            </button>
+            <div class="text-sm relative text-gray-500">
+              <div>
+                <span class="">4</span>
+                Likes
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="relative inline-block text-gray-500 pt-1 pb-1.5">
+      <div class="flex items-center">
+        <div class="flex items-center flex-wrap text-white gap-1 w-4">
+          <div class="flex gap-px">
+            <img
+              src="https://picsum.photos/202/50"
+              alt=""
+              class="rounded-full h-[14px] mt-2"
+            />
+            <img
+              src="https://picsum.photos/223/50"
+              class="rounded-full h-[17px]"
+              alt=""
+            />
+          </div>
+          <div class="flex items-center">
+            <img
+              class="rounded-full ml-4 h-[14px]"
+              src="https://picsum.photos/99/50"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-px mt-3 bg-gray-800 w-full" />
   </div>
 </template>
 
