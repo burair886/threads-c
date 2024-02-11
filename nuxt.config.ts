@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
     "@pinia/nuxt",
-    // "@nuxtjs/supabase",
+    "@nuxtjs/supabase",
     "@nuxtjs/tailwindcss",
     "@vite-pwa/nuxt",
     "nuxt-icon",

@@ -14,6 +14,18 @@
           },
         ]"
       />
+      <Model
+        :class="[
+          {
+            'max-h-[100vh] transition-all duration-200 ease-in visible':
+              userStore.isLogoutOverlay,
+          },
+          {
+            'max-h-0 transition-all duration-200 ease-out invisible':
+              !userStore.isLogoutOverlay,
+          },
+        ]"
+      />
     </NuxtLayout>
   </div>
 </template>

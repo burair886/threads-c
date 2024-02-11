@@ -27,16 +27,23 @@
 </template>
 
 <script setup>
-// const client = useSupabaseClient();
-// const user = useSupabaseUser();
+const client = useSupabaseClient();
+const user = useSupabaseUser();
 
-// const login = async (pro) => {
-//   const res = await client.auth.SignInWithOAuth({
-//     provider: pro,
-//     redirectTo: window.location.origin,
-//   });
-//   if (res.statusCode != 200) {
-//     console.log("eror", res.error);
-//   }
-// };
+const login = async (pro) => {
+  const res = await client.auth.SignInWithOAuth({
+    provider: pro,
+    redirectTo: window.location.origin,
+  });
+  if (res.statusCode != 200) {
+    console.log("eror", res.error);
+  }
+};
+
+watchEffect(()=>{
+  if(user.value){
+    return navigateTo('/')
+  }
+})
+
 </script>
